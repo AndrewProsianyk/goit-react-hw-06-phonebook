@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  width: 300px;
+  padding: 15px;
+  border-radius: 3px;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: rgb(132, 177, 139);
+}
+.input {
+  display: inline-block;
+  width: 150px;
+  background-color: rgb(215, 235, 220);
+  border-radius: 3px;
+  border: 1px solid;
+  margin-left: auto;
+}
+.button {
+  width: 100px;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(101, 231, 155);
+  border-radius: 3px;
+  border: 1px solid #57575e;
+}
+.label {
+  display: flex;
+  margin-bottom: 15px;
+}
