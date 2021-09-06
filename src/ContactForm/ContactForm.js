@@ -1,17 +1,15 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addContact } from '../redux/actions';
-import shortid from 'shortid';
 import styles from './ContactForm.module.css';
 
 function ContactForm() {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.contacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('')
 
-  const nameInputId = shortid.generate();
-  const numInputId = shortid.generate();
 
   const inputChange = e => {
     switch (e.currentTarget.name) {
@@ -27,9 +25,13 @@ function ContactForm() {
   };
   const onSubmitForm = e => {
     e.preventDefault();
-    dispatch(addContact(name, number));
-    setName('');
-    setNumber('');
+    if (contacts.map(contact => contact.name).includes(name)) {
+      alert(`You already have ${name} in contacs.`)
+    } else {
+      dispatch(addContact(name, number));
+      setName('');
+      setNumber('');
+    }
   }
     
   return (
@@ -47,7 +49,6 @@ function ContactForm() {
           required
           onChange={inputChange}
           value={name}
-          id={nameInputId}
         />
       </label>
 
@@ -61,7 +62,6 @@ function ContactForm() {
           required
           value={number}
           onChange={inputChange}
-          id={numInputId}
 
         />
       </label>

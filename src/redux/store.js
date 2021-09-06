@@ -1,9 +1,15 @@
+import reducer from './reducer'
 import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants';
 
-const rootReducer = combineReducers({ contacts: phonebookReducer });
+const persistConfig = {
+    key: 'contacts',
+    storage,
+}
+
+const rootReducer = combineReducers({ contacts: reducer });
 const persistedReducer = persistReducer(persistConfig, rootReducer );
 
 const store = configureStore({
@@ -17,5 +23,4 @@ const store = configureStore({
 })
 const persistor = persistStore(store);
 
-
-export  {store, persistor };
+export {store, persistor};

@@ -11,14 +11,14 @@ export const initialContacts = [
 ];
 
 const contacts = createReducer(initialContacts, {
-    [addContact]: (state, action) => [...state, action.payload],
+    [addContact]: (state, action) => [action.payload, ...state],
     [deleteContact]: (state, action) => state.filter(({ id }) => id !== action.payload),
-})
+});
 
 const filter = createReducer('', {
     [changeFilter]: (_, {payload}) => payload,
-} )
+});
 export default combineReducers({
     contacts,
     filter,
-})
+});

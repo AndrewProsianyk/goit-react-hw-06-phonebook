@@ -1,7 +1,7 @@
 import shortid from "shortid";
 import { createAction } from "@reduxjs/toolkit"
 
-export const addContact = createAction('contact/add', (name, number) => ({
+export const addContact = createAction('contacts/add', (name, number) => ({
     payload: {
         id: shortid.generate(),
         name,
@@ -9,7 +9,7 @@ export const addContact = createAction('contact/add', (name, number) => ({
     },
 }));
 
-export const deleteContact = createAction('contact/delete')
+export const deleteContact = createAction('contacts/delete');
 
-export const changeFilter = createAction('contact/filter');
+export const changeFilter = createAction('contacts/filter');
 
